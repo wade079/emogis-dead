@@ -11,13 +11,13 @@ public class Main extends GraphicsProgram {
     public void run() {
 
         setSize(900, 630);//tamaño del canvas
-        GImage fondo = new GImage("C:\\Users\\wade079\\Desktop\\emogis-dead\\img\\fondo.png");
+        GImage fondo = new GImage("emogisdead\\img\\fondo.png");
         fondo.setSize(350,75);
         add(fondo, 0,  0);
 
-        GImage fondo1 = new GImage("C:\\Users\\wade079\\Desktop\\emogis-dead\\img\\fondo.png");
+        GImage fondo1 = new GImage("emogisdead\\img\\fondo.png");
         fondo1.setSize(350,75);
-        GImage vs = new GImage("C:\\Users\\wade079\\Desktop\\emogis-dead\\img\\vs.png" );
+        GImage vs = new GImage("emogisdead\\img\\vs.png" );
         vs.setSize(200,80);
 
         add(fondo1, 550,  0);
