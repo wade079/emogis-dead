@@ -15,7 +15,7 @@ public class Main extends GraphicsProgram {
         int ancho = 80;
         int alto = 80;
 
-        //Instanciamos los characteres
+        //Instanciamos los personajes
         character[] emojis = new character[names.length];
         for (int i = 0; i < emojis.length; i++) {
             emojis[i]=new character(names[i]);
@@ -25,27 +25,26 @@ public class Main extends GraphicsProgram {
 
         setSize(900, 630);//tamaÃ±o del canvas
 
-        GImage cielo = new GImage("C:\\Users\\wade079\\Desktop\\emogisdead\\img\\cielo.jpg" );
+        GImage cielo = new GImage(path+"cielo.jpg" );
         cielo.setSize(400,73);
         add(cielo, 0,  0);
 
-        GImage cielo_red = new GImage("C:\\Users\\wade079\\Desktop\\emogisdead\\img\\cielo_red.jpg" );
+        GImage cielo_red = new GImage(path+"cielo_red.jpg" );
         cielo_red.setSize(400,73);
         add(cielo_red, 510,  0);
 
-        GImage fondo = new GImage("C:\\Users\\wade079\\Desktop\\emogisdead\\img\\fondo_sanos.png");
+        GImage fondo = new GImage(path+"fondo_sanos.png");
         fondo.setSize(350,75);
         add(fondo, 0,  0);
-        GImage fondo1 = new GImage("C:\\Users\\wade079\\Desktop\\emogisdead\\img\\fondo.png");
+        GImage fondo1 = new GImage(path+"fondo.png");
         fondo1.setSize(350,75);
         add(fondo1, 550,  0);
-        GImage vs = new GImage("C:\\Users\\wade079\\Desktop\\emogisdead\\img\\vs.png" );
+        GImage vs = new GImage(path+"vs.png" );
         vs.setSize(200,80);
         add(vs, 350,  0);
-        GImage terreno = new GImage("C:\\Users\\wade079\\Desktop\\emogisdead\\img\\terreno.jpg" );
+        GImage terreno = new GImage(path+"terreno.jpg" );
         terreno.setSize(900,500);
         add(terreno, 0,  73);
-
 
         for (int i = 0; i < 900; i++) {
             for (int j = 0; j < 1; j++) {
@@ -59,8 +58,6 @@ public class Main extends GraphicsProgram {
                 add(label, x, y);
             }
         }
-
-
 
         while (true){
 
@@ -76,9 +73,6 @@ public class Main extends GraphicsProgram {
             }
 
         }
-
-
-
 
     }
     public int getHeight() {

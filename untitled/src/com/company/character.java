@@ -19,7 +19,7 @@ public class character {
     private boolean is_zombie;
 
     public character(String name){
-        image = new GImage("C:\\Users\\wade079\\Desktop\\emogisdead\\img\\"+name+".png");
+        image = new GImage("img\\"+name+".png");
         image.setSize(size_x,size_y);
     }
 
