@@ -1,7 +1,7 @@
 package com.company;
 import acm.graphics.*;
 import acm.program.GraphicsProgram;
-import java.awt.Color;
+
 
 public class Main extends GraphicsProgram {
 
@@ -12,7 +12,7 @@ public class Main extends GraphicsProgram {
     }
 
     public void run() {
-        setBackground(new Color(60,60,60));
+      
         //Instanciamos los personajes
         character[] emojis = new character[names.length];
         for (int i = 0; i < emojis.length; i++) {
