@@ -12,7 +12,7 @@ public class Main extends GraphicsProgram {
     }
 
     public void run() {
-      
+
         //Instanciamos los personajes
         character[] emojis = new character[names.length];
         for (int i = 0; i < emojis.length; i++) {
@@ -23,7 +23,7 @@ public class Main extends GraphicsProgram {
 
         setSize(960, 680);//tamaÃ±o del canvas
 
-        String path = "C:\\Users\\wade079\\Desktop\\emogisdead\\img\\";
+       String path = "C:\\Users\\wade079\\Desktop\\emogisdead\\img\\";
         GImage cielo = new GImage(path +"cielo.jpg" );
         cielo.setSize(400,73);
         add(cielo, 0,  0);
@@ -39,13 +39,15 @@ public class Main extends GraphicsProgram {
         fondo1.setSize(350,75);
         add(fondo1, 595,  0);
         GImage vs = new GImage(path +"vs.gif" );
-        vs.setSize(260,80);
-        add(vs, 375,  0);
+        vs.setSize(70,70);
+        add(vs, 466,  0);
         GImage terreno = new GImage(path +"terreno.jpg" );
         terreno.setSize(950,550);
         add(terreno, 0,  70);
 
-        for (int i = 0; i < 50; i++) {
+
+
+        for (int i = 0; i < 43; i++) {
             GImage fuego_isq = new GImage(path + "pinchos.gif");
             GImage fuego_der = new GImage(path + "pinchos.gif");
             GImage fuego_arr = new GImage(path + "pinchos.gif");
@@ -65,15 +67,14 @@ public class Main extends GraphicsProgram {
             fuego_ava.setSize(fuego_ancho, fuego_alto);
         }
 
+        int cont_zombie=1; int ciclo = 0; int contador_sanos; int contador_zombi = 1;
 
+        contador_sanos= names.length-cont_zombie;
+        GLabel sanos = new GLabel(toString(contador_sanos));
 
-        /*
-        contador de caracter buenos
-         */
+        contador_zombi= cont_zombie;
+        GLabel zombi = new GLabel(toString(contador_zombi));
 
-        int cont_zombie=1;
-
-        int ciclo = 0;
         while (cont_zombie<= emojis.length-1) {
 
             try {
@@ -84,11 +85,9 @@ public class Main extends GraphicsProgram {
             for (int i = 0; i < emojis.length; i++) {
 
                 add(emojis[i].getImage(), emojis[i].getPos_x(), emojis[i].getPos_y());
-
-            }
-            for (int i = 0; i < emojis.length; i++) {
                 emojis[i].move();
             }
+
 
             if (ciclo == 5) {
                 for (int j = 0; j < emojis.length - 1; j++) {
@@ -97,7 +96,6 @@ public class Main extends GraphicsProgram {
                         if ((emojis[j].getPos_x() >= emojis[k].getPos_x()) && (emojis[j].getPos_x() <= emojis[k].getPos_x() + 80)
                                 &&
                                 (emojis[j].getPos_y() >= emojis[k].getPos_y()) && (emojis[j].getPos_y() <= emojis[k].getPos_y() + 80)) {
-
 
                             if (emojis[j].getStatus() && emojis[k].getStatus()) {
                                 emojis[k].check_collision();
@@ -113,6 +111,8 @@ public class Main extends GraphicsProgram {
                                 emojis[k].setZombie();
                                 emojis[k].check_collision();
                                 cont_zombie++;
+                                contador_sanos--;
+                                contador_zombi++;
 
                             }
                             if (!emojis[j].getStatus() && emojis[k].getStatus()) {
@@ -120,6 +120,8 @@ public class Main extends GraphicsProgram {
                                 emojis[j].setZombie();
                                 emojis[k].check_collision();
                                 cont_zombie++;
+                                contador_zombi++;
+                                contador_sanos--;
                             }
                         }
                     }
@@ -127,7 +129,21 @@ public class Main extends GraphicsProgram {
                 }
             }
             ciclo++;
+            sanos.setLabel(toString(contador_sanos));
+            sanos.setFont("SansSerif-50");
+            add(sanos,410,55);
+
+            zombi.setLabel(toString(contador_zombi));
+            zombi.setFont("SansSerif-50");
+            add(zombi,550,55);
+
+
         }
+
+    }
+
+    private String toString(int contador_sanos) {
+        return String.valueOf(contador_sanos);
     }
 
     public int getHeight() {
@@ -136,7 +152,5 @@ public class Main extends GraphicsProgram {
     public int getWidth() {
         return 0;
     }
-
-
 
 }

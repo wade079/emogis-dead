@@ -31,6 +31,7 @@ public class character {
         if (is_zombie) {
             image = new GImage("C:\\Users\\wade079\\Desktop\\emogisdead\\img\\zombi.png");
 
+
         }
         image.setSize(size_x, size_y);
     }
@@ -135,8 +136,6 @@ public class character {
             mover_y=1;
         }
 
-
-
     }
 
 
@@ -149,8 +148,6 @@ class zombie extends character{
 
     int pos_x=super.pos_x;
     int pos_y=super.pos_y;
-
-
 
     public zombie(String name) {
         super(name);
