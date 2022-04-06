@@ -1,6 +1,5 @@
 package com.company;
 
-
 import acm.graphics.*;
 /*Paul i Albert */
 
@@ -30,7 +29,6 @@ public class character {
 
         if (is_zombie) {
             image = new GImage(path+"zombi.png");
-
 
         }
         image.setSize(size_x, size_y);
