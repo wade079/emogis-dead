@@ -13,14 +13,14 @@ public class Main extends GraphicsProgram {
 
     public void run() {
         setSize(960, 680);//tamaÃ±o del canvas
+        music();
         String path = "C:\\Users\\wade079\\Desktop\\emogisdead\\img\\";
-        String path_music = "C:\\Users\\wade079\\Desktop\\emogisdead\\music\\";
-
         //---------------------------------------------------------------------------
-        SoundClip background = new SoundClip(path_music+"background_music.wav");
-        SoundClip damage = new SoundClip(path_music+"damage.wav");
-        SoundClip start = new SoundClip(path_music+"startup.wav");
-        SoundClip fin = new SoundClip(path_music+"final.wav");
+        String path_music = "C:\\Users\\wade079\\Desktop\\emogisdead\\music\\";
+        SoundClip background = new SoundClip(path_music + "background_music.wav");
+        SoundClip damage = new SoundClip(path_music + "damage.wav");
+        SoundClip start = new SoundClip(path_music + "startup.wav");
+        SoundClip fin = new SoundClip(path_music + "final.wav");
 
         background.setVolume(0.2);
         damage.setVolume(1);
@@ -28,9 +28,9 @@ public class Main extends GraphicsProgram {
         fin.setVolume(1);
         //--------------------------------------------------------------------------
 
-        GImage game_ini = new GImage(path +"ini.gif");
+        GImage game_ini = new GImage(path + "ini.gif");
         game_ini.setSize(960, 680);//
-        add(game_ini, 0,  0);
+        add(game_ini, 0, 0);
 
         start.play();
         try {
@@ -41,59 +41,17 @@ public class Main extends GraphicsProgram {
         start.stop();
 
         game_ini.setSize(0, 0);//
-        add(game_ini, 80,  0);
+        add(game_ini, 80, 0);
         background.play();
-
+        maping();
+        lanzallamas();
 
         //Instanciamos los personajes
         character[] emojis = new character[names.length];
         for (int i = 0; i < emojis.length; i++) {
-            emojis[i]=new character(names[i]);
+            emojis[i] = new character(names[i]);
             emojis[i].setPos();
 
-        }
-
-        GImage cielo = new GImage(path +"cielo.jpg" );
-        cielo.setSize(400,73);
-        add(cielo, 0,  0);
-
-        GImage cielo_red = new GImage(path +"cielo_red.jpg" );
-        cielo_red.setSize(350,73);
-        add(cielo_red, 605,  0);
-
-        GImage fondo = new GImage(path +"fondo_sanos.png");
-        fondo.setSize(350,75);
-        add(fondo, 0,  0);
-        GImage fondo1 = new GImage(path +"fondo.png");
-        fondo1.setSize(350,75);
-        add(fondo1, 595,  0);
-        GImage vs = new GImage(path +"vs.gif" );
-        vs.setSize(70,70);
-        add(vs, 466,  0);
-        GImage terreno = new GImage(path +"terreno.jpg" );
-        terreno.setSize(950,550);
-        add(terreno, 0,  70);
-
-
-
-        for (int i = 0; i < 43; i++) {
-            GImage fuego_isq = new GImage(path + "pinchos.gif");
-            GImage fuego_der = new GImage(path + "pinchos.gif");
-            GImage fuego_arr = new GImage(path + "pinchos.gif");
-            GImage fuego_ava = new GImage(path + "pinchos.gif");
-            int fuego_ancho = 180;
-            int fuego_alto = 50;
-
-            int y = 0;
-            y = y + i*40 ;
-          add(fuego_isq, 840, y + 55);
-            fuego_isq.setSize(fuego_ancho, fuego_alto);
-           add(fuego_der, -80, y + 55);
-            fuego_der.setSize(fuego_ancho, fuego_alto);
-            add(fuego_arr, y - 840,  55);
-            fuego_arr.setSize(fuego_ancho, fuego_alto);
-          add( fuego_ava, y - 80,  574);
-            fuego_ava.setSize(fuego_ancho, fuego_alto);
         }
 
         int cont_zombie=1; int ciclo = 0; int contador_sanos; int contador_zombi;
@@ -117,7 +75,7 @@ public class Main extends GraphicsProgram {
                 emoji.move();
             }
 
-            if (ciclo <= 5) {
+            if (ciclo >= 5) {
                 for (int j = 0; j < emojis.length - 1; j++) {
                     for (int k = j + 1; k < emojis.length; k++) {
 
@@ -135,7 +93,7 @@ public class Main extends GraphicsProgram {
                             }
 
                             if (emojis[j].getStatus() && !emojis[k].getStatus()) {
-                                emojis[k].setStatus(true);
+                                emojis[k].setStatus();
                                 emojis[k].setZombie();
                                 emojis[k].check_collision();
                                 cont_zombie++;
@@ -145,7 +103,7 @@ public class Main extends GraphicsProgram {
 
                             }
                             if (!emojis[j].getStatus() && emojis[k].getStatus()) {
-                                emojis[j].setStatus(true);
+                                emojis[j].setStatus();
                                 emojis[j].setZombie();
                                 emojis[k].check_collision();
                                 cont_zombie++;
@@ -180,6 +138,61 @@ public class Main extends GraphicsProgram {
         add(game_over, 0,  0);
 
     }
+
+    private void music() {
+    }
+
+    private void lanzallamas() {
+
+        String path = "C:\\Users\\wade079\\Desktop\\emogisdead\\img\\";
+        for (int i = 0; i < 43; i++) {
+            GImage fuego_isq = new GImage(path + "pinchos.gif");
+            GImage fuego_der = new GImage(path + "pinchos.gif");
+            GImage fuego_arr = new GImage(path + "pinchos.gif");
+            GImage fuego_ava = new GImage(path + "pinchos.gif");
+            int fuego_ancho = 180;
+            int fuego_alto = 50;
+
+            int y = 0;
+            y = y + i*40 ;
+            add(fuego_isq, 840, y + 55);
+            fuego_isq.setSize(fuego_ancho, fuego_alto);
+            add(fuego_der, -80, y + 55);
+            fuego_der.setSize(fuego_ancho, fuego_alto);
+            add(fuego_arr, y - 840,  55);
+            fuego_arr.setSize(fuego_ancho, fuego_alto);
+            add( fuego_ava, y - 80,  574);
+            fuego_ava.setSize(fuego_ancho, fuego_alto);
+        }
+    }
+
+    private void maping() {
+
+        String path = "C:\\Users\\wade079\\Desktop\\emogisdead\\img\\";
+
+        GImage cielo = new GImage(path + "cielo.jpg");
+        cielo.setSize(400, 73);
+        add(cielo, 0, 0);
+
+        GImage cielo_red = new GImage(path + "cielo_red.jpg");
+        cielo_red.setSize(350, 73);
+        add(cielo_red, 605, 0);
+
+        GImage fondo = new GImage(path + "fondo_sanos.png");
+        fondo.setSize(350, 75);
+        add(fondo, 0, 0);
+        GImage fondo1 = new GImage(path + "fondo.png");
+        fondo1.setSize(350, 75);
+        add(fondo1, 595, 0);
+        GImage vs = new GImage(path + "vs.gif");
+        vs.setSize(70, 70);
+        add(vs, 466, 0);
+        GImage terreno = new GImage(path + "terreno.jpg");
+        terreno.setSize(950, 550);
+        add(terreno, 0, 70);
+
+    }
+
 
     private String toString(int contador_sanos) {
         return String.valueOf(contador_sanos);

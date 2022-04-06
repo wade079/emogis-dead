@@ -15,13 +15,13 @@ public class character {
 
     protected int pos_x;
     protected int pos_y;
-
+    private final String path = "C:\\Users\\wade079\\Desktop\\emogisdead\\img\\";
     GImage image;
 
     protected boolean is_zombie=false;
 
     public character(String name){
-        image = new GImage("C:\\Users\\wade079\\Desktop\\emogisdead\\img\\"+name+".png");
+        image = new GImage(path+name+".png");
 
         if (name.equals("zombi")){
             is_zombie=true;
@@ -29,7 +29,7 @@ public class character {
         }
 
         if (is_zombie) {
-            image = new GImage("C:\\Users\\wade079\\Desktop\\emogisdead\\img\\zombi.png");
+            image = new GImage(path+"zombi.png");
 
 
         }
@@ -42,14 +42,11 @@ public class character {
 
     public void setZombie(){
 
-        image.setImage("C:\\Users\\wade079\\Desktop\\emogisdead\\img\\zombi.png");
+        image.setImage(path+"zombi.png");
         image.setSize(size_x, size_y);
     }
 
     public void move() {
-
-        /*int mover_x = getRandomNumber(min,max);
-        int mover_y = getRandomNumber(min,max);*/
 
 
         this.pos_x = this.pos_x + mover_x;
@@ -63,7 +60,7 @@ public class character {
     public boolean getStatus() {
         return is_zombie;
     }
-    public void setStatus(boolean zombie){
+    public void setStatus(){
         this.is_zombie=true;
     }
 
@@ -94,14 +91,6 @@ public class character {
         }
 
         return pos_y;
-    }
-
-    public int getSize_x() {
-        return size_x;
-    }
-
-    public int getSize_y() {
-        return size_y;
     }
 
     public void check_wall(int pos_x, int pos_y) {
@@ -142,20 +131,6 @@ public class character {
 
     public int getRandomNumber(int min, int max) {//generar numeros aleatorios
         return (int) ((Math.random() * (max - min)) + min);
-    }
-}
-class zombie extends character{
-
-    int pos_x=super.pos_x;
-    int pos_y=super.pos_y;
-
-    public zombie(String name) {
-        super(name);
-    }
-
-    public void setPos() {
-        this.pos_x = getRandomNumber(0,930);
-        this.pos_y = getRandomNumber(80, 580);//Por capcelera en canvas
     }
 }
 
