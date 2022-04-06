@@ -14,7 +14,7 @@ public class character {
 
     protected int pos_x;
     protected int pos_y;
-    private final String path = "C:\\Users\\wade079\\Desktop\\emogisdead\\img\\";
+    public final String path = "C:\\Users\\wade079\\Desktop\\emogisdead\\img\\";
     GImage image;
 
     protected boolean is_zombie=false;
