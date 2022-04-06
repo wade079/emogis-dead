@@ -1,7 +1,7 @@
 package com.company;
 import acm.graphics.*;
 import acm.program.GraphicsProgram;
-
+import acm.util.SoundClip;
 
 public class Main extends GraphicsProgram {
 
@@ -12,6 +12,38 @@ public class Main extends GraphicsProgram {
     }
 
     public void run() {
+        setSize(960, 680);//tamaÃ±o del canvas
+        String path = "C:\\Users\\wade079\\Desktop\\emogisdead\\img\\";
+        String path_music = "C:\\Users\\wade079\\Desktop\\emogisdead\\music\\";
+
+        //---------------------------------------------------------------------------
+        SoundClip background = new SoundClip(path_music+"background_music.wav");
+        SoundClip damage = new SoundClip(path_music+"damage.wav");
+        SoundClip start = new SoundClip(path_music+"startup.wav");
+        SoundClip fin = new SoundClip(path_music+"final.wav");
+
+        background.setVolume(0.2);
+        damage.setVolume(1);
+        start.setVolume(1);
+        fin.setVolume(1);
+        //--------------------------------------------------------------------------
+
+        GImage game_ini = new GImage(path +"ini.gif");
+        game_ini.setSize(960, 680);//
+        add(game_ini, 0,  0);
+
+        start.play();
+        try {
+            Thread.sleep(14500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        start.stop();
+
+        game_ini.setSize(0, 0);//
+        add(game_ini, 80,  0);
+        background.play();
+
 
         //Instanciamos los personajes
         character[] emojis = new character[names.length];
@@ -21,9 +53,6 @@ public class Main extends GraphicsProgram {
 
         }
 
-        setSize(960, 680);//tamaÃ±o del canvas
-
-       String path = "C:\\Users\\wade079\\Desktop\\emogisdead\\img\\";
         GImage cielo = new GImage(path +"cielo.jpg" );
         cielo.setSize(400,73);
         add(cielo, 0,  0);
@@ -56,18 +85,18 @@ public class Main extends GraphicsProgram {
             int fuego_alto = 50;
 
             int y = 0;
-            y = y + i * 40;
+            y = y + i*40 ;
           add(fuego_isq, 840, y + 55);
             fuego_isq.setSize(fuego_ancho, fuego_alto);
            add(fuego_der, -80, y + 55);
             fuego_der.setSize(fuego_ancho, fuego_alto);
-            add(fuego_arr, y +-840,  55);
+            add(fuego_arr, y - 840,  55);
             fuego_arr.setSize(fuego_ancho, fuego_alto);
-          add( fuego_ava, y +-80,  574);
+          add( fuego_ava, y - 80,  574);
             fuego_ava.setSize(fuego_ancho, fuego_alto);
         }
 
-        int cont_zombie=1; int ciclo = 0; int contador_sanos; int contador_zombi = 1;
+        int cont_zombie=1; int ciclo = 0; int contador_sanos; int contador_zombi;
 
         contador_sanos= names.length-cont_zombie;
         GLabel sanos = new GLabel(toString(contador_sanos));
@@ -82,14 +111,13 @@ public class Main extends GraphicsProgram {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            for (int i = 0; i < emojis.length; i++) {
+            for (character emoji : emojis) {
 
-                add(emojis[i].getImage(), emojis[i].getPos_x(), emojis[i].getPos_y());
-                emojis[i].move();
+                add(emoji.getImage(), emoji.getPos_x(), emoji.getPos_y());
+                emoji.move();
             }
 
-
-            if (ciclo == 5) {
+            if (ciclo <= 5) {
                 for (int j = 0; j < emojis.length - 1; j++) {
                     for (int k = j + 1; k < emojis.length; k++) {
 
@@ -113,6 +141,7 @@ public class Main extends GraphicsProgram {
                                 cont_zombie++;
                                 contador_sanos--;
                                 contador_zombi++;
+                                damage.play();
 
                             }
                             if (!emojis[j].getStatus() && emojis[k].getStatus()) {
@@ -122,6 +151,7 @@ public class Main extends GraphicsProgram {
                                 cont_zombie++;
                                 contador_zombi++;
                                 contador_sanos--;
+                                damage.play();
                             }
                         }
                     }
@@ -137,8 +167,17 @@ public class Main extends GraphicsProgram {
             zombi.setFont("SansSerif-50");
             add(zombi,550,55);
 
-
         }
+
+        try {
+            Thread.sleep(1500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }background.stop();
+        fin.play();
+        GImage game_over = new GImage(path +"game_over.gif");
+        game_over.setSize(960, 680);//
+        add(game_over, 0,  0);
 
     }
 
