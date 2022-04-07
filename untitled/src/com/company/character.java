@@ -28,7 +28,7 @@ public class character {
         }
 
         if (is_zombie) {
-            image = new GImage(path+"zombi.png");
+            image = new GImage(path+"zombi.gif");
 
         }
         image.setSize(size_x, size_y);
@@ -40,7 +40,7 @@ public class character {
 
     public void setZombie(){
 
-        image.setImage(path+"zombi.png");
+        image.setImage(path+"zombi.gif");
         image.setSize(size_x, size_y);
     }
 

@@ -20,8 +20,8 @@ public class Main extends GraphicsProgram {
         ini();
         maping();
         lanzallamas();
-        musicfondo();
         damage();
+        musicfondo();
         fin_partida();
     }
 
@@ -96,15 +96,12 @@ public class Main extends GraphicsProgram {
     }
 
     private void musicfondo() {//metode per la musica
+
         SoundClip musicfondo = new SoundClip(path_music + "background_music.wav");//ruta +nom
         musicfondo.setVolume(0.2);//volum musica
         musicfondo.play();//inici musica
         caracter();//crida metode caracter per instanciar-los
-        try {
-            Thread.sleep(1500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
         musicfondo.stop();//para la musica
     }
 
@@ -185,6 +182,11 @@ public class Main extends GraphicsProgram {
             add(zombi, 550, 55);
 
         }
+        try {
+            Thread.sleep(1500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     private void damage() {//metode pel soroll de contagi
@@ -199,7 +201,7 @@ public class Main extends GraphicsProgram {
         SoundClip fin = new SoundClip(path_music + "final.wav");
         SoundClip game_over = new SoundClip(path_music + "game_over.wav");
         fin.setVolume(0.5);
-        game_over.setVolume(1);
+        game_over.setVolume(0.5);
 
         fin.play();
         game_over.play();
